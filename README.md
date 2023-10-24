@@ -6,7 +6,7 @@ Universidad San Carlos de Guatemala
 Programador: Javier Andrés Monjes Solórzano 
 Carne: 202100081
 Correo:3020696740101@ingenieria.usac.edu.gt
-### Proyecto 1 - Lenguajes Formales de Programación
+### Proyecto 2 - Lenguajes Formales de Programación
 ```
 ---
 <ul>

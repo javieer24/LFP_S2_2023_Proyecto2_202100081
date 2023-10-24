@@ -12,8 +12,8 @@ Correo:3020696740101@ingenieria.usac.edu.gt
 <ul>
   <li>Documentación:
     <ul>
-       <li><a href="https://github.com/javieer24/LFP_S2_2023_Proyecto1_202100081/blob/main/Manual_Tecnico/README.md" target="_blank">:point_right:Manual Técnico</a></li>
-       <li><a href="https://github.com/javieer24/LFP_S2_2023_Proyecto1_202100081/blob/main/Manual_de_Usuario/README.md" target="_blank">:point_right:Manual de Usuario</a></li>
+       <li><a href="https://github.com/javieer24/LFP_S2_2023_Proyecto2_202100081/tree/main/Manuales/Manual%20Tecnico" target="_blank">:point_right:Manual Técnico</a></li>
+       <li><a href="https://github.com/javieer24/LFP_S2_2023_Proyecto2_202100081/tree/main/Manuales/Manual_de_Usuario" target="_blank">:point_right:Manual de Usuario</a></li>
     </ul>
   </li>
 </ul>

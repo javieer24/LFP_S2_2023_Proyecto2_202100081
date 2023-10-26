@@ -10,9 +10,9 @@ def analizadorBizData(texto):
     print('Analizando la información...')
     print(texto)
     #Pasa por el analizador  Lexico y Obtiene los Tokens
-    tokens = Lexico.GeTokens(texto)
-    Lexico.imprimirlistatokens()
-    Lexico.imprimirerroreslexicos()
+    tokens = lexico.GeTokens(texto)
+    lexico.imprimirlistatokens()
+    lexico.imprimirerroreslexicos()
     
     if len(tokens) >0:
        #Pasar al analizador Sintactico y obtener Estructuras

@@ -1,3 +1,4 @@
+
 from Lexico import *
 from Sintactico import *
 from Funciones import *
@@ -10,7 +11,7 @@ def analizadorBizData(texto):
     print('Analizando la información...')
     print(texto)
     #Pasa por el analizador  Lexico y Obtiene los Tokens
-    tokens = lexico.GeTokens(texto)
+    tokens = lexico.GetTokens(texto)
     lexico.imprimirlistatokens()
     lexico.imprimirerroreslexicos()
     

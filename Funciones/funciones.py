@@ -4,7 +4,16 @@ listainstrucciones = []
 txtresultado = ''
 
 
-
+def agregar_claves(listaclaves):
+    global Claves
+    #Limpiar Clave anteriores
+    Claves = []
+    #Agregar claves
+    for i in listaclaves:
+        Claves.append(i)
+    #Imprimir Resultado
+    print('\n---[Claves]---')
+    print(Claves,'\n')
 
 def imprimir(texto):
     print(texto)

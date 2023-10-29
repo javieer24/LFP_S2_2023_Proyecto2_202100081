@@ -24,7 +24,7 @@ def imprimir(texto):
 
 
 def imprimirInstrucciones():
-    print('\n##################### [ Instrucciones ] #############################')
+    print('\n------------------------------[ Instrucciones ]------------------------------')
     for i in listainstrucciones: 
         print(i)
 
@@ -33,7 +33,7 @@ def evaluarinstrucciones():
     global listainstrucciones, txtresultado
     c = 0
     maxiteraciones = len(listainstrucciones)
-    print('\n##################### [ EVALUANDO... ] #############################')
+    print('\n------------------------------ [ EVALUANDO... ] ------------------------------')
     while c < maxiteraciones:
         instruccion = listainstrucciones[c] 
         print('Instruccion: ',instruccion[0], 'Contenido: ', instruccion[1])

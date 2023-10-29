@@ -3,6 +3,10 @@
 listainstrucciones = []
 txtresultado = ''
 
+Claves = []
+Registros = []
+flagClavesyRegistros = False
+tempLista = []
 
 def agregar_claves(listaclaves):
     global Claves

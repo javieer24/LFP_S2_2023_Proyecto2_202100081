@@ -3,12 +3,16 @@
 from tkinter import messagebox as MessageBox
 
 
+#Variables
+
 tokens = []
 linea = 1
 columna = 1
 listaerrores = []
-listadocaracteresbuscados = ['{','}',':','[',']',',','(',')',';','=','"',"'",'#','_','-']
+listadocaracteresbuscados = ['{','}',':','[',']',',','(',')',';','=','"',"'",'#','_','-','.']
 listaabecedario = ['A','a','B','b','C','c','D','d','E','e','F','f','G','g','H','h','I','i','J','j','K','k','L','l','M','m','N','n','O','o','P','p','Q','q','R','r','S','s','T','t','U','u','V','v','W','w','X','x','Y','y','Z','z','Ñ','ñ']
+
+flagcomillas = False
 
 
 
@@ -114,7 +118,7 @@ def evaluartexto(texto):
             columna += 1
             #Contador
             c += 1
-        
+       
         elif caracter.isdigit():
             #Almacenar token
             tokens.append([id,caracter,linea, columna,'Numero'])
@@ -123,7 +127,7 @@ def evaluartexto(texto):
             columna += 1
             #Contador
             c += 1
-        
+       
         else:
             #Caracter Desconocido
             print("\033[1;31;40m Error: caracter desconocido:", caracter," |Linea:",linea," |Columna:",columna,"\033[0m")
@@ -194,34 +198,50 @@ def obtenernumero(texto, a):
     return [int(numero), a]
 
 
+
+
+def enumerartokens():
+    global tokens
+    for i in range(0,len(tokens)):
+        Token = tokens[i]
+        #Cambiar ID
+        tokens[i][0] = i
+        Token = tokens[i]
+
+
 def imprimirerroreslexicos():
-    print('######### [ ERRORES LEXICOS ] #########\n')
+    print('--------- [ ERRORES LEXICOS ] ---------\n')
     for i in listaerrores:
         print(i)
 
 
+
 def imprimirlistatokens():
-    print('######### [ TOKENS ] ##########\n')
+    print('--------- [ TOKENS ] ---------\n')
     for i in tokens:
         print(i)
-
+        
+        
 def GetErrores():
     return listaerrores
 
 
 def GetTokens(texto):
-    #Valida el tamaño del texto
+    #Validar tamaño del texto
     if len(texto) < 0:
-        MessageBox.showerror('Error - lexico()','No hay la información necesaria para poder procesarlo')
+        MessageBox.showerror('Error - lexico()','No hay informacion necesarioa para procesarlo')
         return
-    #Reinicia los valores
-    global tokens, linea, columna, listaerrores
+    #Reiniciar valores
+    global tokens, linea, columna, listaerrores, flagcomillas
     tokens = []
     linea = 1
     columna = 1
     listaerrores = []
-    #Analiza el Texto
+    flagcomillas = False
+    #Analizar Texto
     evaluartexto(texto)
     
+    #Poner un ID CORRECTO
+    enumerartokens()
     
     return tokens

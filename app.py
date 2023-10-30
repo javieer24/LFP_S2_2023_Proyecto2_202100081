@@ -3,10 +3,12 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter.ttk import Combobox
 from tkinter import filedialog, messagebox
+from tkinter import messagebox as MessageBox
 
 
 from Analizador import *
 from Lexico import *
+from Sintactico import *
 
 def Abrir():
     print('-- [ Abrir ] --')
@@ -21,7 +23,7 @@ def Abrir():
         with open(rutaarchivo, 'r') as archivo:
             textoarchivo = archivo.read()
     except Exception as e:
-        print('• Error[Abrir()][Tk_ventana][CD001]: No se puede abrir el archivo \n')
+        print('• Error[Abrir()]: No se puede abrir el archivo \n')
         print(e)
     
     #Imprimir Texto
@@ -37,6 +39,9 @@ def Abrir():
 
     #Analizar
 def Analizar():
+    
+    inputconsola.config(state=NORMAL)
+    
     print('\n-- [ Analizar ] --')
     texto = str(inputtexto.get("1.0",END))
     txtconsola = analizador.analizadorBizData(texto)
@@ -46,7 +51,8 @@ def Analizar():
     #Limpiar consola
     inputconsola.delete('1.0', 'end')
     #Agregar Texto
-    inputconsola.insert('1.0', str(txtconsola))
+    inputconsola.config(state=DISABLED)
+
 
 
     
@@ -86,6 +92,138 @@ def GuardarComo():
     # Cerramos el archivo
     new_archivo.close()
     print('Guardando como...')
+
+
+def ReporteErrores():
+    try:
+        print('Report Errores')
+        #Obtiene listas errores
+        ErroresLexicos = lexico.GetErrores()
+        ErroresSintactico = Sintactico.GetErrores()
+
+        
+        #Validar
+        if len(ErroresLexicos) <= 0 and len(ErroresSintactico) <= 0:
+            #No hay Errores
+            MessageBox.showinfo('Error | Reporte Errores','No hay errores que mostrar.')
+        else:
+            print('--- [Errores Lexicos] ---')
+            print(ErroresLexicos)
+            print('--- [Errores Sintacticos] ---')
+            print(ErroresSintactico)
+            #Crea archivo HTML
+            txthtml = crearTextoHTML('Reporte Errores',['No.','Token','Fila I.','Columna I.','Fila F.','Columna F.','Tipo de Error'],ErroresLexicos)
+            #Crear Archivo HTML
+            ruta = 'Reporte_Errores.html'
+            archivo = open(ruta,'w')
+            archivo.write(txthtml)
+            archivo.close()
+
+            print('¡Reporte creado exitosamente!\nReporte_Errores.html')
+
+
+        #Mensaje
+    except Exception as e:
+        print('Error ', e)
+
+
+################################################################
+def crearTextoHTML(nombre,Titulos,Registros):
+    
+    txthtml = ''
+
+    #Inicio
+    txthtml = '''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<title>Proyecto 2</title>
+</head>
+<body>
+<div class="container">
+    <h1>'''+str(nombre)+'''</h1>
+    <h5>BizData-Javier Monjes - 202100081</h5>
+    <br>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>'''
+
+    #----------------------------------------------------------------
+    #Titulo Tabla [ CLAVES ]
+    for titulo in Titulos:
+        txthtml += '''                <th scope="col">'''+str(titulo)+'''</th>'''
+
+    txthtml += '''</tr>
+        </thead>'''
+    #----------------------------------------------------------------
+
+
+    #----------------------------------------------------------------
+    #Filas Tabla
+    txthtml += '''<tbody>'''
+
+    contadorerrores = 0
+    for i in range(0,len(Registros)):
+        txthtml += '''<tr>'''
+        registro = Registros[i]
+        contador = 0
+        for c in range(0,len(registro)+3):
+            
+            if contador == 0:
+                txthtml += '''<th scope="row">'''+str(contadorerrores)+'''</th>'''    
+            elif contador > 0 and contador < len(registro):
+                txthtml += '''<th scope="row">'''+str(registro[contador-1])+'''</th>'''
+            elif contador == 6:
+                txthtml += '''<th scope="row">'''+str(registro[len(registro)-1])+'''</th>'''
+            else:
+                txthtml += '''<th scope="row">'''+str('--')+'''</th>'''
+            contador += 1
+            
+        contadorerrores += 1
+
+
+        txthtml += '''</tr>'''
+
+    # for registro in Registros:
+    #     txthtml += '''<tr>'''
+    #     for valor in registro:
+    #         txthtml += '''<th scope="row">'''+str(valor)+'''</th>'''
+    #     txthtml += '''</tr>'''
+
+    txthtml += '''</tbody>
+    </table>
+</div>
+<br>'''
+    #----------------------------------------------------------------
+
+
+    # #----------------------------------------------------------------
+    # #Funciones
+    # txthtml += '''<div class="container">'''
+
+    # for accion in listaAcciones:
+    #     txthtml += '''<div class="row">
+    #         <div class="alert alert-secondary col" role="alert">
+    #             '''+str(accion)+'''
+    #         </div>
+    #     </div>'''
+
+    # txthtml += '''</div>'''
+
+    #----------------------------------------------------------------
+
+    #Final
+    txthtml += '''</body>
+</html>'''
+    return txthtml
+
+
+
+
 
 raiz = Tk()
 raiz.title('LFP Proyecto 2 |BizData| 202100081')

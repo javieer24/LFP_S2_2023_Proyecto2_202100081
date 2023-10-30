@@ -176,7 +176,7 @@ def obtenercomentario(text, a):
         #Forma el texto
         string += caracter
         a += 1
-    print("Error: No al obtenrecomentario().")
+    print("Error: Al obtenrecomentario().")
 
 
 
@@ -227,21 +227,21 @@ def GetErrores():
 
 
 def GetTokens(texto):
-    #Validar tamaño del texto
+    #Valida el tamaño del texto
     if len(texto) < 0:
         MessageBox.showerror('Error - lexico()','No hay informacion necesarioa para procesarlo')
         return
-    #Reiniciar valores
+    #Reinicia los valores
     global tokens, linea, columna, listaerrores, flagcomillas
     tokens = []
     linea = 1
     columna = 1
     listaerrores = []
     flagcomillas = False
-    #Analizar Texto
+    #Analiza el Texto
     evaluartexto(texto)
     
-    #Poner un ID CORRECTO
+    #Pone un ID CORRECTO
     enumerartokens()
     
     return tokens

@@ -901,7 +901,7 @@ def evaluartokens(tokens):
     global listaSintactico, listatokens
     #Almacenar Tokens
     listatokens = tokens
-    print('\n####### [ EVALUAR TOKENS ] #######')
+    print('\n-----------------------------  [ EVALUAR TOKENS ] ----------------------------- ')
     #Iterador
     c = 0
     maxiteraciones = len(listatokens)

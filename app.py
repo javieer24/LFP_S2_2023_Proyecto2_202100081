@@ -129,7 +129,7 @@ def ReporteErrores():
         print('Error ', e)
 
 
-################################################################
+
 def crearTextoHTML(nombre,Titulos,Registros):
     
     txthtml = ''
@@ -151,7 +151,7 @@ def crearTextoHTML(nombre,Titulos,Registros):
 </div>
 <div class="container">
     <table class="table table-bordered">
-        <thead class="thead-dark">
+        <thead class="thead-light">
         <tr>'''
 
     #----------------------------------------------------------------

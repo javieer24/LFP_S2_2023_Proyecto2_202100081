@@ -358,7 +358,7 @@ def funcion_exportarReporte(nombre):
             archivo.write(txthtml)
             archivo.close()
 
-            mensaje += 'Reporte creado exitosamente...\nReporte.html'
+            mensaje += '¡Reporte creado exitosamente!\nReporte.html'
             
 
         except Exception as e:
@@ -382,23 +382,23 @@ def crearTextoHTML(nombre):
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Proyecto 2</title>
+    <title>Proyecto 2 - BizData</title>
   </head>
   <body>
-    <div class="container">
-        <h1>'''+str(nombre)+'''</h1>
-        <h5>BizData - Javier Monjes - 202100081</h5>
+    <div class="container" style="justify-content:center;">
+        <h1> '''+str(nombre)+'''</h1>
+        <h5> Javier Monjes - 202100081</h5>
         <br>
     </div>
     <div class="container">
         <table class="table table-bordered">
-            <thead class="thead-dark">
+            <thead class="thead-light">
             <tr>'''
 
         #----------------------------------------------------------------
         #Titulo Tabla [ CLAVES ]
         for titulo in Claves:
-            txthtml += '''                <th scope="col">'''+str(titulo)+'''</th>'''
+            txthtml += '''                <th scope="col" style="text-align:center;">'''+str(titulo)+'''</th>'''
 
         txthtml += '''</tr>
             </thead>'''
@@ -412,7 +412,7 @@ def crearTextoHTML(nombre):
         for registro in Registros:
             txthtml += '''<tr>'''
             for valor in registro:
-                txthtml += '''<th scope="row">'''+str(valor)+'''</th>'''
+                txthtml += '''<th scope="row" style="text-align:center;">'''+str(valor)+'''</th>'''
             txthtml += '''</tr>'''
 
         txthtml += '''</tbody>

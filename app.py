@@ -10,6 +10,8 @@ from Analizador import *
 from Lexico import *
 from Sintactico import *
 
+
+
 def Abrir():
     print('-- [ Abrir ] --')
     #Limpiar input
